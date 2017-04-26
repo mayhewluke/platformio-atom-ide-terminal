@@ -479,6 +479,9 @@ class PlatformIOTerminalView extends View
     @terminal.blur()
     @terminal.element.blur()
 
+    if lastActiveElement?
+      lastActiveElement.focus()
+
   resizeTerminalToView: ->
     return unless @panel.isVisible() or @tabView
 

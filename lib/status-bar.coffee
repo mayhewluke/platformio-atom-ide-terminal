@@ -211,11 +211,14 @@ class StatusBar extends View
 
   getActiveTerminalView: ->
     return @activeTerminal
-  
+
   focusTerminal: ->
     return unless @activeTerminal?
 
-    @activeTerminal.focusTerminal()
+    if terminal = PlatformIOTerminalView.getFocusedTerminal()
+        @activeTerminal.blur()
+    else
+        @activeTerminal.focusTerminal()
 
   getTerminalById: (target, selector) ->
     selector ?= (terminal) -> terminal.id
