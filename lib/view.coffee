@@ -467,6 +467,8 @@ class PlatformIOTerminalView extends View
   focusTerminal: =>
     return unless @terminal
 
+    lastActiveElement = $(document.activeElement)
+
     @terminal.focus()
     if @terminal._textarea
       @terminal._textarea.focus()
