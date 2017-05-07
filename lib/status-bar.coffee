@@ -213,7 +213,7 @@ class StatusBar extends View
     return @activeTerminal
 
   focusTerminal: ->
-    return unless @activeTerminal?
+    @newTerminalView() if not @activeTerminal?
 
     if terminal = PlatformIOTerminalView.getFocusedTerminal()
         @activeTerminal.blur()
