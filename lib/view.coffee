@@ -467,7 +467,13 @@ class PlatformIOTerminalView extends View
   focusTerminal: =>
     return unless @terminal
 
-    lastActiveElement = $(document.activeElement)
+    # Never set a terminal element to be the lastActiveElement or else we won't
+    # have anything to switch back to when unfocusing. Also don't change the
+    # lastActiveElement if the body is the activeElement, as that indicates
+    # nothing has focus.
+    if $(document.activeElement).closest(this).length == 0 and
+        document.activeElement != document.body
+      lastActiveElement = $(document.activeElement)
 
     @terminal.focus()
     if @terminal._textarea
